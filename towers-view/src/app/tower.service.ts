@@ -33,14 +33,30 @@ class TowerProgressSimulator {
       const newTower = this.copyTower(tower);
       newTower.getGrowthJobs().forEach(x => x.increment());
 
+      newTower.slots.forEach(slot => {
+        if (slot.growthTray?.growthJob?.isFinished()) {
+          slot.growthTray.growthJob = new GrowthJob(this.getRandomGrowthJobName(), 0);
+        }
+      })
+
       newTowers.push(newTower);
     }
 
     return newTowers;
   }
 
+  private getRandomGrowthJobName() {
+    const growthJobNames = ['Basil', 'Strawberry', 'Tomato', 'Kale', 'Lettuce'];
+
+    const min = 0;
+    const max = growthJobNames.length - 1;
+   
+    const randomIndex = Math.floor(Math.random() * (max - min) + min);;
+
+    return growthJobNames[randomIndex];
+  }
+
   private copyTower(oldTower: Tower): Tower {
-    let newGrowthJobsState: GrowthJob[] = [];
     let newSlots: Slot[] = [];
 
     for (let i = 0; i < oldTower.slots.length; i++) {
@@ -48,15 +64,15 @@ class TowerProgressSimulator {
 
       let newGrowthTray: GrowthTray | null = null;
       let newGrowthJob: GrowthJob | null = null;
-      if (oldSlot.growtTray != null) {
+      if (oldSlot.growthTray != null) {
         
-        if (oldSlot.growtTray.growthJob != null) {
+        if (oldSlot.growthTray.growthJob != null) {
           newGrowthJob = new GrowthJob(
-            oldSlot.growtTray.growthJob.name,
-            oldSlot.growtTray.growthJob.progressPercentage);
+            oldSlot.growthTray.growthJob.name,
+            oldSlot.growthTray.growthJob.progressPercentage);
         }
 
-        newGrowthTray = new GrowthTray(oldSlot.growtTray.identifier, newGrowthJob)
+        newGrowthTray = new GrowthTray(oldSlot.growthTray.identifier, newGrowthJob)
       }
 
       let newSlot = new Slot(oldSlot.number, newGrowthTray);
@@ -80,8 +96,8 @@ class Tower {
     for (let i = 0; i < this.slots.length; i++) {
       const slot = this.slots[i];
 
-      if(slot.growtTray?.growthJob != null) {
-        allGrowthJobs.push(slot.growtTray.growthJob);
+      if(slot.growthTray?.growthJob != null) {
+        allGrowthJobs.push(slot.growthTray.growthJob);
       }
       
     }
@@ -91,7 +107,7 @@ class Tower {
 }
 
 class Slot {
-  constructor(public number: number, public growtTray: GrowthTray | null) {
+  constructor(public number: number, public growthTray: GrowthTray | null) {
 
   }
 }
@@ -140,6 +156,21 @@ class StaticDataFactory {
 
     let tower1 = new Tower(1, tower1Slots)
 
-    return [tower1]
+    let tower2Slots: Slot[] = [
+      new Slot(1, new GrowthTray("GT B1", new GrowthJob("Tomato", 1))),
+      new Slot(2, null),
+      new Slot(3, null),
+      new Slot(4, new GrowthTray("GT B4", null)),
+      new Slot(5, new GrowthTray("GT B5", null)),
+      new Slot(6, new GrowthTray("GT B6", null)),
+      new Slot(7, new GrowthTray("GT B7", null)),
+      new Slot(8, new GrowthTray("GT B8", new GrowthJob("Tomato", 24))),
+      new Slot(9, new GrowthTray("GT B9", new GrowthJob("Tomato", 25))),
+      new Slot(10, new GrowthTray("GT B10", new GrowthJob("Tomato", 77)))
+    ];
+
+    let tower2 = new Tower(2, tower2Slots);
+
+    return [tower1, tower2];
   }
 }
