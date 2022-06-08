@@ -1,20 +1,20 @@
 import { BehaviorSubject } from "rxjs";
 
 export class TowerService {
-  private towerData = new BehaviorSubject<Tower[]>([]);
-  public towerDataChanged$ = this.towerData.asObservable();
+  private towerDataSubject = new BehaviorSubject<Tower[]>([]);
+  public towerData$ = this.towerDataSubject.asObservable();
 
   constructor() {
     let factory = new StaticDataFactory();
     let towers = factory.build();
 
-    this.towerData.next(towers);
+    this.towerDataSubject.next(towers);
 
     const simulator = new TowerProgressSimulator();
-
+    
     setInterval(() => {
       const newTowers = simulator.incrementProgress(towers);
-      this.towerData.next(newTowers);
+      this.towerDataSubject.next(newTowers);
       towers = newTowers;
     }, 1000)
   }
