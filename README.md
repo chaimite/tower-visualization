@@ -44,7 +44,10 @@ Having multiple towers displayed on the same screen makes it difficult for opera
 - Solution should be done using the latest version of Angular
 - The solution should be accompanied by a README file containing your thought process, any shortcuts you've taken and why, assumptions that had to be made as well as how you would evolve your solution to make it ready for a production environment.
 - The solution should be delivered as a git repository with instructions for how to run it.
+
+# Guidelines
 - You can either extend the provided Angular workspace or copy the simulation classes into your own project if you prefer a different setup.
+- Don't worry too much about presentation, we would like to see well written functioning code.
 
 # Bonus Points
 - Unit, component and/or e2e tests
