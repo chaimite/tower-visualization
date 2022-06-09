@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TowerService } from './tower.service';
+import { TowerService } from './simulation/tower.service';
 
 @Component({
   selector: 'app-root',
