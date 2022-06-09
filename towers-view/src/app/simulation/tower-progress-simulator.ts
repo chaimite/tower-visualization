@@ -12,6 +12,14 @@ export class TowerProgressSimulator {
 
     for (let i = 0; i < towers.length; i++) {
       const tower = towers[i];
+
+      /* Copying the tower object means clients will need to properly react to
+        changes in the observable values rather than angular
+        picking up there's been a change in the existing reference automatically.
+
+        This should be a better representation of how values would be coming in
+        from a servers
+      */
       const newTower = this.copyTower(tower);
       newTower.getGrowthJobs().forEach(x => x.increment());
 
