@@ -1,25 +1,23 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, interval, map, Observable } from "rxjs";
 import { StaticDataFactory } from "./static-data-factory";
 import { Tower } from "./tower";
 import { TowerProgressSimulator } from "./tower-progress-simulator";
 
 export class TowerService {
-  private towerDataSubject = new BehaviorSubject<Tower[]>([]);
-  public towerData$ = this.towerDataSubject.asObservable();
+  public towerData$: Observable<Tower[]>;
 
   constructor() {
     let factory = new StaticDataFactory();
     let towers = factory.build();
-
-    this.towerDataSubject.next(towers);
-
     const simulator = new TowerProgressSimulator();
     
-    setInterval(() => {
-      const newTowers = simulator.incrementProgress(towers);
-      this.towerDataSubject.next(newTowers);
-      towers = newTowers;
-    }, 1000)
+    this.towerData$ = interval(1000).pipe(
+      map(() => {
+        const newTowers = simulator.incrementProgress(towers);
+        towers = newTowers;
+
+        return newTowers;
+      }));
   }
 }
 
