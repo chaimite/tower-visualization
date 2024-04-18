@@ -1,0 +1,12 @@
+openapi: 3.0.1
+info:
+  title: Frontend Engineer Tech Test
+  x-cortex-git:
+    github:
+      repository: intelligent-growth-solutions/tech-test-front-end-engineer
+  x-cortex-tag: tech-test-front-end-engineer
+  x-cortex-type: documentation
+  x-cortex-owners:
+  - name: intelligent-growth-solutions-user-apps
+    type: GROUP
+    provider: CORTEX
