@@ -1,0 +1,29 @@
+<ng-container *ngIf="(towers$ | async) as towers">
+    <ng-container *ngIf="(selectedTower$ | async) as selectedTower">
+      <h2>Tower {{ selectedTower.number }}</h2>
+  
+      <ng-container *ngFor="let slot of selectedTower.slots;">
+        <h3>Slot {{ slot.number }}</h3>
+  
+        <ng-container *ngIf="slot.growthTray as growthTray">
+          <h4>Growth Tray {{ growthTray.identifier }}</h4>
+          <p>Growth Job: {{ growthTray.growthJob?.name }}</p>
+          <progress [value]="growthTray.growthJob?.progressPercentage" max="100"></progress>
+          <p>{{ growthTray.growthJob?.progressPercentage }}%</p>
+        </ng-container>
+      </ng-container>
+  
+      <label for="towerSelect">Select Tower:</label>
+      <select
+        id="towerSelect"
+        [value]="selectedTower.number"
+        (change)="onSelectTower($event)">
+        <option *ngFor="let tower of towers" [value]="tower.number">
+          Tower {{ tower.number }}
+        </option>
+      </select>
+    </ng-container>
+  </ng-container>
+
+  testing
+  
