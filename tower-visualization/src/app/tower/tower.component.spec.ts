@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TowerComponent } from './tower.component';
+import { StoreModule } from '@ngrx/store';
 
 describe('TowerComponent', () => {
   let component: TowerComponent;
@@ -8,7 +9,7 @@ describe('TowerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TowerComponent]
+      imports: [TowerComponent, StoreModule.forRoot({})]
     })
     .compileComponents();
 
