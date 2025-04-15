@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { TowerService } from '../simulation/tower.service';
 import { setTowers } from './tower.actions';
 import { map, mergeMap } from 'rxjs/operators';
-import { Tower } from '../simulation/tower';
+import { Tower } from '../../simulation/tower';
+import { TowerService } from '../../simulation/tower.service';
 
 @Injectable()
 export class TowerEffects {

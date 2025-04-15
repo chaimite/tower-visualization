@@ -1,12 +1,13 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { selectAllTowers, selectCurrentTower } from './tower.selectors';
-import { selectTower, setTowers } from './tower.actions';
+
 import { Store } from '@ngrx/store';
 import { Tower } from '../simulation/tower';
-import { AsyncPipe, CommonModule, JsonPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TowerService } from '../simulation/tower.service';
+import { setTowers, selectTower } from '../entities/towers/tower.actions';
+import { selectAllTowers, selectCurrentTower } from '../entities/towers/tower.selectors';
 
 @Component({
   selector: 'app-tower',

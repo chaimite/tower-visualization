@@ -1,4 +1,4 @@
-import { Tower } from "../simulation/tower";
+import { Tower } from "../../simulation/tower";
 
 export interface TowerState {
     towers: Tower[];

@@ -2,13 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
 import { TowerEffects } from './tower.effects';
-// import { TowerService } from './tower.service';
 import { setTowers } from './tower.actions';
-import { Tower } from '../simulation/tower';
-import { TowerService } from '../simulation/tower.service';
-import { Slot } from '../simulation/slot';
-import { GrowthTray } from '../simulation/growth-tray';
-import { GrowthJob } from '../simulation/growth-job';
+import { GrowthJob } from '../../simulation/growth-job';
+import { GrowthTray } from '../../simulation/growth-tray';
+import { Slot } from '../../simulation/slot';
+import { Tower } from '../../simulation/tower';
+import { TowerService } from '../../simulation/tower.service';
 
 describe('TowerEffects', () => {
   let effects: TowerEffects;

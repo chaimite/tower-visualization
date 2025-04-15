@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { towerReducer } from './tower/tower.reducer';
+import { towerReducer } from './entities/towers/tower.reducer';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
