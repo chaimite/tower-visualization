@@ -1,9 +1,9 @@
 import { towerReducer, initialState } from './tower.reducer';
 import { setTowers, selectTower } from './tower.actions';
-import { Tower } from '../simulation/tower';
-import { Slot } from '../simulation/slot';
-import { GrowthTray } from '../simulation/growth-tray';
-import { GrowthJob } from '../simulation/growth-job';
+import { GrowthJob } from '../../simulation/growth-job';
+import { GrowthTray } from '../../simulation/growth-tray';
+import { Slot } from '../../simulation/slot';
+import { Tower } from '../../simulation/tower';
 
 describe('Tower Reducer', () => {
   it('should return the initial state', () => {
