@@ -8,6 +8,7 @@ import { GrowthTray } from '../../simulation/growth-tray';
 import { Slot } from '../../simulation/slot';
 import { Tower } from '../../simulation/tower';
 import { TowerService } from '../../simulation/tower.service';
+import { StoreModule } from '@ngrx/store';
 
 describe('TowerEffects', () => {
   let effects: TowerEffects;
@@ -22,6 +23,7 @@ describe('TowerEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [StoreModule.forRoot({})],
       providers: [
         TowerEffects,
         provideMockActions(() => actions$),
