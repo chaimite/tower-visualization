@@ -1,68 +1,104 @@
-# IGS Front-end Engineer Tech Test
+# Acme
 
-One of the core functions of the IGS software is to automate the growing of plants. The growing process happens in what we call a **Tower**.
+`<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45">``</a>`
 
-An IGS Tower has a number of **Slots** in which **Growth Trays** can be placed. Once a **Growth Tray** is in position, an operator can schedule a **Growth Job** in it.
+✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
 
-A **Growth Job** is what automates the growing of plants by sending instructions for when plants should be watered and when they should be lit by LED lights.
+[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
 
-The back-end system handles what **Growth Tray** is in what **Slot** and what **Growth Job** is running in what **Growth Tray**.
+## Run tasks
 
-## Back-end System Simulation
+To run tasks with Nx use:
 
-The `tower.service.ts` class simulates the workings of the back-end system and exposing an ever changing stream of data through an observable called `towerData$`.
-
-The observable will give you an array of 2 towers that have some **Growth Jobs** running in them. Every second the progress of each **Growth Job** will update. Once each **Growth Job** is finished a new **Growth Job** simulation will start. This is meant to mimic an operator scheduling new **Growth Jobs** once the old ones are done.
-
-An very basic example of a **Tower** with just a single **Slot** would look like this
-
-```json
-{
-  "number": 1,
-  "slots": [
-    {
-      "number": 1,
-      "growthTray": {
-        "identifier": "GT A1",
-        "growthJob": {
-          "name": "Basil",
-          "progressPercentage": 80,
-        }
-      }
-    },
-  ]
-}
+```sh
+npx nx <target> <project-name>
 ```
 
-## Objective
+For example:
 
-### Visualisation
+```sh
+npx nx build myproject
+```
 
-Develop a solution that visualises each **Tower** with its associated **Slots**, **Growth Trays** and **Growth Job** progress.
+These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
-Your solution should reflect the constant progress of the **Growth Jobs**.
+[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-### Switching Between Towers
+## Add new projects
 
-Having multiple towers displayed on the same screen makes it difficult for operators to manage their work. Only 1 tower should be displayed at a time with the ability to switch between them.
+While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
 
-## Requirements
+To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
 
-- Solution should be done using the latest version of Angular
-- The solution should be accompanied by a README file containing your thought process, any shortcuts you've taken and why, assumptions that had to be made as well as how you would evolve your solution to make it ready for a production environment.
-- The solution should be delivered as a git repository with instructions for how to run it.
+```sh
+npx nx add @nx/react
+```
 
-## Guidelines
+Use the plugin's generator to create new projects. For example, to create a new React app or library:
 
-- You can either extend the provided Angular workspace or copy the simulation classes into your own project if you prefer a different setup
-- Technologies we would like to see used  
-  - monorepo (Nx/Lerna)
-  - State Management (RxJS/Redux)
-  - Micro frontend and module federation
-- Don't worry too much about presentation, we would like to see well written functioning code
+```sh
+# Generate an app
+npx nx g @nx/react:app demo
 
-## Bonus Points
+# Generate a library
+npx nx g @nx/react:lib some-lib
+```
 
-- Unit, component and/or e2e tests
-- linting
-- containerised solution
+You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+
+[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Set up CI!
+
+### Step 1
+
+To connect to Nx Cloud, run the following command:
+
+```sh
+npx nx connect
+```
+
+Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+
+- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+### Step 2
+
+Use the following command to configure a CI workflow for your workspace:
+
+```sh
+npx nx g ci-workflow
+```
+
+[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Install Nx Console
+
+Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+
+[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Useful links
+
+Learn more:
+
+- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+And join the Nx community:
+
+- [Discord](https://go.nx.dev/community)
+- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
+- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
+- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+npx create-nx-workspace acme --preset=apps
+
+npx nx g @nx/angular:host apps/shell --remotes=towers
+
+npx nx serve shell --devRemotes=towers
